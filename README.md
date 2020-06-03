@@ -8,6 +8,8 @@ This project is a class project for CMU Internet of Things class. Classroom Emot
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+To test the camera feature on your mobile device, run `HTTPS=true yarn start`.
+
 ### `yarn build`
 
 Builds the app for production to the `build` folder.<br />
