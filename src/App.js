@@ -1,13 +1,11 @@
 import React from 'react';
-import RecordingWrapper from './components/recording/RecordingWrapper';
+import StudentDashboard from './components/StudentDashboard';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <RecordingWrapper />
-      </header>
+      <StudentDashboard />
     </div>
   );
 }

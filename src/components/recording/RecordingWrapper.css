@@ -1,0 +1,7 @@
+.recording-wrapper__canvas {
+  visibility: hidden;
+}
+
+.recording-wrapper__video-section {
+  width: 100%;
+}

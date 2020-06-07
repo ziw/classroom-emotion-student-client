@@ -1,0 +1,7 @@
+.student-info-header {
+  padding: 15px;
+  font-size: 16px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
