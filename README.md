@@ -8,7 +8,10 @@ This project is a class project for CMU Internet of Things class. Classroom Emot
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-To test the camera feature on your mobile device, run `HTTPS=true yarn start`.
+### `yarn start:mobile`
+
+Runs the app in the development mode using https.<br />
+Testing the camera feature on your mobile device (non-localhost) requires https connection.
 
 ### `yarn build`
 
@@ -19,3 +22,7 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### Styles
+
+This app uses [Ant Design](https://ant.design/) design framework. Visit offical [doc](https://ant.design/docs/react/introduce) to get started.
