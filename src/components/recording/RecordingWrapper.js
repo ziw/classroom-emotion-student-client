@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import './RecordingWrapper.css';
+import { uploadSnapshot } from '../utils';
 
 export default class RecordingWrapper extends React.Component {
 
@@ -8,26 +9,33 @@ export default class RecordingWrapper extends React.Component {
     super(props);
     this.videoPlayer = React.createRef();
     this.stagingCanvas = React.createRef();
-    this.interval = undefined;
+    this.intervalId = undefined;
     this.state = {
       cameraSupported: 'mediaDevices' in navigator,
       recording: false,
+      canvasDimension: {},
     }
   }
 
+  resizeCanvas() {
+    this.setState({
+      canvasDimension: {
+        w: this.videoPlayer.current.videoWidth,
+        h: this.videoPlayer.current.videoHeight,
+      }
+    });
+  }
+
   captureSnapshot(interval = 3000) {
-    if(this.interval) {
-      clearInterval(this.interval);
-    }
     const context = this.stagingCanvas.current.getContext('2d');
-    this.interval = setInterval(() => {
+    this.intervalId = setInterval(() => {
+      this.resizeCanvas();
       context.drawImage(
         this.videoPlayer.current,
-        0, 0, 640, 960 //TODO config the picture size
+        0, 0, this.state.canvasDimension.w, this.state.canvasDimension.h
       );
+      uploadSnapshot(this.stagingCanvas.current.toDataURL());
     }, interval);
-
-    //TODO do something with the picture
   }
 
   toggleRecording() {
@@ -35,6 +43,9 @@ export default class RecordingWrapper extends React.Component {
     const videoPlayer = this.videoPlayer.current;
 
     if(recording) {
+      if(this.intervalId) {
+        clearInterval(this.intervalId);
+      }
       videoPlayer.srcObject.getVideoTracks().forEach(track => track.stop());
       videoPlayer.srcObject = undefined;
       this.setState({ recording: false });
@@ -59,7 +70,11 @@ export default class RecordingWrapper extends React.Component {
           {this.state.recording ? 'Stop Video' : 'Start Video'}
         </Button>
         <video autoPlay ref={ this.videoPlayer } width="100%"></video>
-        <canvas ref={ this.stagingCanvas } className="recording-wrapper__canvas"/>
+        <canvas ref={ this.stagingCanvas }
+          className="recording-wrapper__canvas"
+          width={ this.state.canvasDimension.w }
+          height={ this.state.canvasDimension.h }
+        />
       </div>
     );
   }
