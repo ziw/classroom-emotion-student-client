@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import './RecordingWrapper.css';
-import { uploadSnapshot } from '../utils';
+import { uploadSnapshot } from '../../utils';
 
 export default class RecordingWrapper extends React.Component {
 
