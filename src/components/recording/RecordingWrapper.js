@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'antd';
 import './RecordingWrapper.css';
 import { uploadSnapshot } from '../../utils';
+import Authorize from '../Authorize';
 
 export default class RecordingWrapper extends React.Component {
 
@@ -34,7 +35,7 @@ export default class RecordingWrapper extends React.Component {
         this.videoPlayer.current,
         0, 0, this.state.canvasDimension.w, this.state.canvasDimension.h
       );
-      uploadSnapshot(this.stagingCanvas.current.toDataURL());
+      uploadSnapshot(this.stagingCanvas.current.toDataURL(), this.props.username);
     }, interval);
   }
 
@@ -66,6 +67,7 @@ export default class RecordingWrapper extends React.Component {
 
     return (
       <div className="recording-wrapper__video-section">
+        <Authorize />
         <Button onClick={this.toggleRecording.bind(this)}>
           {this.state.recording ? 'Stop Video' : 'Start Video'}
         </Button>
