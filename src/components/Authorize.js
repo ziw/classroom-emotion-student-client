@@ -5,7 +5,7 @@ function Authorize() {
     <div>
       <hr/>
         <h4 style={{ 'font-weight':'bold'}}>
-          We only collect your face data for anonymous sentimental anaysis and will strictly abide by the principle confidentially
+          We only collect your face data for anonymous sentimental anaysis.
         </h4>
       <hr/>
     </div>

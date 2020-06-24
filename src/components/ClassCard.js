@@ -16,8 +16,7 @@ function ClassCard() {
         style={{ marginTop: 30, marginBottom: 30, borderLeft: 'solid rgb(0, 128, 32)'}}
         >
         <Meta
-          avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-          title={username}
+          title={`Welcome, ${username}`}
         />
         <hr></hr>
         <Meta

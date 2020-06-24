@@ -1,5 +1,5 @@
 
-const BASE_URL = process.env.NODE_ENV === 'development' ?
+export const BASE_URL = process.env.NODE_ENV === 'development' ?
                   'http://localhost:8080'
                   : 'https://smart-classroom-server.wl.r.appspot.com';
 /**
