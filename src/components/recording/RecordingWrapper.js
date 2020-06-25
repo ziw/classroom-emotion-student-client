@@ -22,6 +22,7 @@ export default class RecordingWrapper extends React.Component {
       recording: false,
       canvasDimension: {},
     }
+    this.faceDetected = false;
   }
 
   async componentDidMount() {
@@ -47,7 +48,7 @@ export default class RecordingWrapper extends React.Component {
         this.videoPlayer.current,
         0, 0, this.state.canvasDimension.w, this.state.canvasDimension.h
       );
-      uploadSnapshot(this.stagingCanvas.current.toDataURL(), this.props.username);
+      uploadSnapshot(this.stagingCanvas.current.toDataURL(), this.props.username, this.faceDetected);
     }, interval);
   }
 
@@ -78,6 +79,7 @@ export default class RecordingWrapper extends React.Component {
     const result = await faceapi.detectSingleFace(videoEl, options)
 
     if (result) {
+      this.faceDetected = result.score > 0.8;
       const canvas = this.faceApiCanvas.current;
       const dims = faceapi.matchDimensions(canvas, videoEl, true);
       if(dims && dims.width && dims.height){
